@@ -3,11 +3,26 @@ const managerPrompts = [
     type: "input",
     name: "managerName",
     message: "What is the name of the manager?",
-  },
+    validate: (managerName) => {
+      if (managerName) {
+        return true;
+      } else {
+        console.log("Please enter the name of the manager.");
+        return false;
+      }
+  }},
   {
     type: "input",
     name: "managerID",
     message: "What is the ID of the manager?",
+    validate: (managerID) => {
+        if (managerID) {
+          return true;
+        } else {
+          console.log("Please enter the ID of the manager.");
+          return false;
+        }
+    }
   },
   {
     type: "input",

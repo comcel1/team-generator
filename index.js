@@ -1,8 +1,7 @@
-// const generateHTML = require('./src/generateHTML');
-
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
-const fs = require("fs");
+const { generatePage } = require("./src/generatePage");
+const writeFile = require("./src/generateSite");
 
 // add team profile dependencies
 const Manager = require("./lib/Manager");
@@ -37,8 +36,7 @@ const start = async () => {
       teamObject.manager.push(manager);
     })
     .catch((err) => console.log(err));
-    continueQuestion();
-
+  continueQuestion();
 };
 
 const continueQuestion = async () => {
@@ -63,7 +61,7 @@ const continueQuestion = async () => {
     internQuestions();
   } else {
     console.log("Goodbye!");
-    console.log(teamObject);
+    createPage();
   }
 };
 
@@ -71,14 +69,14 @@ const engineerQuestions = async () => {
   await inquirer
     .prompt(engineerPrompts)
     .then((data) => {
-        let engineer = new Engineer(
-            data.engineerName,
-            data.engineerID,
-            data.engineerEmail,
-            data.engineerGithub
-          );
-    
-          teamObject.engineers.push(engineer);
+      let engineer = new Engineer(
+        data.engineerName,
+        data.engineerID,
+        data.engineerEmail,
+        data.engineerGithub
+      );
+
+      teamObject.engineers.push(engineer);
     })
     .catch((err) => console.log(err));
 
@@ -89,18 +87,23 @@ const internQuestions = async () => {
   await inquirer
     .prompt(internPrompts)
     .then((data) => {
-        let intern = new Intern(
-            data.internName,
-            data.internID,
-            data.internEmail,
-            data.internSchool,
-          );
-    
-          teamObject.interns.push(intern);
+      let intern = new Intern(
+        data.internName,
+        data.internID,
+        data.internEmail,
+        data.internSchool
+      );
+
+      teamObject.interns.push(intern);
     })
     .catch((err) => console.log(err));
 
   continueQuestion();
+};
+
+const createPage = async () => {
+  const pageData = await generatePage(teamObject);
+  writeFile(pageData);
 };
 
 start();
