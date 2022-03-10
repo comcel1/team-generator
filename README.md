@@ -8,7 +8,7 @@ This is a command line application that will generate a responsive webpage displ
 
 ## Video Walkthrough
 
-https://drive.google.com/file/d/1-k1pNONtyBnldnoNMGnFtpf6wl8QBi31/view
+<a href="https://drive.google.com/file/d/1-k1pNONtyBnldnoNMGnFtpf6wl8QBi31/view" target="_blank">Challenge 10 - Demonstration Video</a>
 
 ### Questions
 
