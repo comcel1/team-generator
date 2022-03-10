@@ -103,7 +103,7 @@ const internQuestions = async () => {
 
 const createPage = async () => {
   const pageData = await generatePage(teamObject);
-  writeFile(pageData);
+  return writeFile(pageData);
 };
 
 start();
